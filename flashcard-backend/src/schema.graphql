@@ -13,6 +13,14 @@ type User {
     email: String!
     firstname: String!
     lastname: String!
+    course: [Course!]!
+}
+
+type Course {
+    id: ID!
+    name: String!
+    description: String!
+    user: [User!]!
 }
 
 input LoginInput {
@@ -30,10 +38,11 @@ input UserInput {
 type Query {
     user(id: ID!): User!
     users: [User!]!
+    courses: [Course!]!
 }
 
 type Mutation {
     login(input: LoginInput!): AuthResponse!
-    updateUser(input: UserInput): User!
-    createUser(input: UserInput): AuthResponse!
+    updateUser(id: ID!,input: UserInput!): User!
+    createUser(input: UserInput!): AuthResponse!
 }

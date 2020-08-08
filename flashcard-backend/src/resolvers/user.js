@@ -1,9 +1,9 @@
 import User from '../models/user'
-import { hash, compare } from 'bcrypt'
-import { createJWT } from '../middleware/auth'
+
+import { createJWT, hashPassword, comparePassword } from '../middleware/auth'
 import UserCourse from '../models/user_course'
 
-const saltRounds = 10
+
 
 const UserResolver = {
     Query: {
@@ -20,14 +20,7 @@ const UserResolver = {
         login: async (_, {input}, context) => {
             const {email, password} = input
             const user = await User.findOne({email: email})
-            console.log(user)
-            const login = await new Promise((resolve, reject) => {
-                compare(password, user.hash, (err, res)=> {
-                    if (err) reject(err)
-                    resolve(res)
-                })
-            })
-            if (login){
+            if (comparePassword(password, user.hash)){
                 return {
                     authToken: {
                         accessToken: createJWT(user._id),
@@ -43,17 +36,11 @@ const UserResolver = {
         },
         createUser: async (_, {input}, context) => {
             const { firstname, lastname, email, password } = input
-            const hashedPassword = await new Promise((resolve, reject) => {
-                hash(password, saltRounds, (err, hash) => {
-                    if (err) reject(err)
-                    resolve(hash)
-                });
-            })
             const user = new User({
                 email,
                 firstname,
                 lastname,
-                hash: hashedPassword,
+                hash: await hashPassword(password),
             })
             const {id} = await user.save()
             return {
@@ -70,7 +57,22 @@ const UserResolver = {
             }
         },
         updateUser: async (_, args, context) => {
-            return
+            const { firstname, lastname, email, password } = args.input
+            await User.findByIdAndUpdate(args.id,{
+                firstname,
+                lastname,
+                email
+            }, function(err, result){
+                if(err){
+                    console.log(err)
+                }
+            })
+            return {
+                id: args.id,
+                firstname,
+                lastname,
+                email,
+            }
         }
     }
 }

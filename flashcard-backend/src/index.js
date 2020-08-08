@@ -29,6 +29,7 @@ const server = new ApolloServer({
 connect(process.env.MONGODB_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
+    useFindAndModify: true,
     useCreateIndex: true
 })
 
