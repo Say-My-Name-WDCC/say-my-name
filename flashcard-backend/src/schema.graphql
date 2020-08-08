@@ -1,0 +1,77 @@
+type AuthToken {
+  accessToken: String!
+  expiredAt: String!
+}
+
+type AuthResponse {
+  authToken: AuthToken!
+  user: User!
+}
+
+type File {
+    filename: String!
+    mimetype: String!
+    encoding: String!
+}
+
+type User {
+    id: ID!
+    email: String!
+    firstname: String!
+    lastname: String!
+    voice: String
+    image: String
+    courses: [Course!]
+}
+
+type Course {
+    id: ID!
+    name: String!
+    description: String!
+    image: String
+    users: [User!]!
+}
+
+type Face {
+    id: ID!
+    firstname: String!
+    lastname: String!
+    image: String!
+}
+
+input LoginInput {
+    email: String!
+    password: String!
+}
+
+input UserInput {
+    firstname: String!
+    lastname: String!
+    email: String!
+    password: String!
+}
+
+input CourseInput {
+    name: String!
+    description: String!
+}
+
+type Query {
+    user(id: ID!): User!
+    users: [User!]!
+    course(id: ID!): Course!
+    courses: [Course!]!
+    faces(courseID: ID!, count: Number!): [Face!]!
+}
+
+type Mutation {
+    login(input: LoginInput!): AuthResponse!
+    updateUser(id: ID!,input: UserInput!): User!
+    createUser(input: UserInput!): AuthResponse!
+    updateCourse(id: ID!, input: CourseInput!): Course!
+    createCourse(input: CourseInput!): Course!
+    joinCourse(course: ID!): String!
+    leaveCourse(course: ID!): String!
+    profileUpload(file: Upload!): String!
+    voiceUpload(file: Upload!): String!
+}
