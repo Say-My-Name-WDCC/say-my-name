@@ -3,10 +3,18 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import GameQuestion from './pages/gameQuestion';
+
+function getProps() {
+  return <GameQuestion 
+  name="Nathan" 
+   />;
+}
+const a = "something"
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <GameQuestion />
   </React.StrictMode>,
   document.getElementById('root')
 );

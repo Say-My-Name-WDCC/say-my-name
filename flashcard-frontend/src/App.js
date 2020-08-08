@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
@@ -18,9 +18,20 @@ function App() {
         >
           Learn React
         </a>
+        <MyButton text="Click Me" />
       </header>
     </div>
   );
+}
+
+function MyButton({text}) {
+  const [count, setCount] = useState(0)
+  function clickHandler() {
+    setCount(count+1)
+  }
+  return (
+  <button onClick={clickHandler}>Clicked: {count}</button>
+  )
 }
 
 export default App;
