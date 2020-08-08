@@ -8,13 +8,10 @@ import { HomePage, QuestionPage, ScorePage, ProfilePage, LoginPage, RegisterPage
 
 import './App.css';
 import MyProfilePage from './pages/User/MyProfilePage'
-<<<<<<< HEAD
 import NavBar from './components/NavBar/NavBar'
 import SideBar from './components/SideBar/SideBar'
-=======
 import AddCoursePage from './pages/Home/AddCourse'
 import UpdateUserPage from './pages/User/UpdateUser'
->>>>>>> origin/master
 
 
 
