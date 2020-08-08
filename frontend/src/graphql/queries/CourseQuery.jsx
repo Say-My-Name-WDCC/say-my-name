@@ -37,8 +37,4 @@ const CreateCourse = gql`
     ${CourseFragment}
 `
 
-const FacesQuery = gql`
-    faces
-`
-
 export { CoursesQuery, CourseQuery, UpdateCourse, CreateCourse }

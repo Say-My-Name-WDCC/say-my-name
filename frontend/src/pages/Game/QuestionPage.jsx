@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import { Paper, Grid, Avatar, LinearProgress } from '@material-ui/core';
 
@@ -36,46 +36,45 @@ const BorderLinearProgress = withStyles((theme) => ({
     },
 }))(LinearProgress);
 
-const QuestionPage = props => {
+const data = {
+    "faces": [
+        {
+            "id": "5f2e29659711155338ddb39a",
+            "firstname": "test2",
+            "lastname": "test2",
+            "image": null
+        }
+    ]
+}
+
+const QuestionPage = () => { 
+    const [score, setScore] = useState(0)
+    const [user, setUser] = useState()
+    useEffect(()=>{
+        setUser(data.faces[Math.floor(Math.random() * data.faces.length)])
+    },[data])
     const classes = useStyles();
     return (
         <div>
-            <br/>
-            <BorderLinearProgress variant="determinate" value={props.score} />
-
-
+            <br />
+            <BorderLinearProgress variant="determinate" value={score*20} />
             <Grid container spacing={3}>
                 <Grid item xs={12}>
-                    <Paper className={classes.paper}>{props.name}</Paper>
+                    <Paper className={classes.paper}>{user?.firstname + " " + user?.lastname}</Paper>
                 </Grid>
-                <Grid item xs={6}>
-                    <Paper className={classes.paper}>
-                        <center>
-                            <Avatar alt="Remy Sharp" src={props.choices[0]} className={classes.large} />
-                        </center>
-                    </Paper>
-                </Grid>
-                <Grid item xs={6}>
-                    <Paper className={classes.paper}>
-                        <center>
-                            <Avatar alt="Remy Sharp" src={props.choices[1]} className={classes.large} />
-                        </center>
-                    </Paper>
-                </Grid>
-                <Grid item xs={6}>
-                    <Paper className={classes.paper}>
-                        <center>
-                            <Avatar alt="Remy Sharp" src={props.choices[3]} className={classes.large} />
-                        </center>
-                    </Paper>
-                </Grid>
-                <Grid item xs={6}>
-                    <Paper className={classes.paper}>
-                        <center>
-                            <Avatar alt="Remy Sharp" src={props.choices[4]} className={classes.large} />
-                        </center>
-                    </Paper>
-                </Grid>
+                {
+                    data.faces.map(() => {
+                        return (
+                            <Grid item xs={6}>
+                                <Paper className={classes.paper}>
+                                    <center>
+                                        <Avatar alt="Guess Me" src={user?.image} className={classes.large} />
+                                    </center>
+                                </Paper>
+                            </Grid>
+                        )
+                    })
+                }
             </Grid>
 
         </div>

@@ -36,7 +36,7 @@ const HomePage = () => {
                     {
                         data?.me.courses?.map((course) =>
                             <ListItem button>
-                                <ListItemText primary={course.name} />
+                                <ListItemText onClick={()=>history.push(`/game/question/${course.id}`)} primary={course.name} />
                             </ListItem>
                         )
                     }
