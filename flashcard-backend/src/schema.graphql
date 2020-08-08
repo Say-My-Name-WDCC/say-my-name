@@ -10,7 +10,9 @@ type AuthResponse {
 
 type User {
     id: ID!
-    name: String!
+    email: String!
+    firstname: String!
+    lastname: String!
 }
 
 input LoginInput {
