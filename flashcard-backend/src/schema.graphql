@@ -19,13 +19,14 @@ input LoginInput {
 }
 
 input UserInput {
-    name: String!
-    username: String!
+    firstname: String!
+    lastname: String!
+    email: String!
     password: String!
 }
 
 type Query {
-    user: User!
+    user(id: ID!): User!
     users: [User!]!
 }
 

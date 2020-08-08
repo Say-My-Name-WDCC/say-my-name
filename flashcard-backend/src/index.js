@@ -5,7 +5,6 @@ import {connect, connection} from 'mongoose'
 import express from 'express'
 import cors from 'cors'
 import dotenv from 'dotenv'
-import { UserResolver } from './resolvers/user.js'
 
 dotenv.config()
 
@@ -30,7 +29,8 @@ const server = new ApolloServer({
 
 connect(process.env.MONGODB_URL, {
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
+    useCreateIndex: true
 })
 
 const db = connection;

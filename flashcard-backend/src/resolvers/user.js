@@ -1,9 +1,13 @@
 import User from '../models/user'
+import {hash} from 'bcrypt'
+
+const saltRounds = 10
 
 const UserResolver = {
     Query: {
         user: async (root, args, context) =>{
-            return await User.findById(id)
+            console.log(args)
+            return await User.findById(args.id)
         },
         users: async(root, args, context) =>{
             return await User.find({})
@@ -14,11 +18,19 @@ const UserResolver = {
             
         },
         createUser: async (_, args, context) =>{
+            const { firstname, lastname, email, password } = args
+            await hash(password, saltRounds, (err, hash) => {
+                console.log(hash)
+              });
+            const user = new User({
+                username: username,
+                password: password
+            })
             console.log(args)
             return {
                 authToken: {
-                    accessToken: "test",
-                    expiredAt: "test"
+                    accessToken: "",
+                    expiredAt: ""
                 },
                 user: {
                     id: "",

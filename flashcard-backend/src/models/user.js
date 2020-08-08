@@ -1,12 +1,16 @@
-import {Schema, model} from 'mongoose'
+import { Schema, model } from 'mongoose'
 
 const UserSchema = new Schema({
-    username: {
+    email: {
         type: String,
         required: true,
         unique: true
     },
-    name: {
+    firstname: {
+        type: String,
+        required: true
+    },
+    lastname: {
         type: String,
         required: true
     },
@@ -19,5 +23,6 @@ const UserSchema = new Schema({
         required: true
     },
 })
+
 const User = model('User', UserSchema)
 export default User
