@@ -21,13 +21,13 @@ const shuffle=(arr) =>{
 const CourseResolver = {
 
     Course: {
-        users: async ({ _id }) => {
-            const course = await UserCourse.find({ course: _id }).populate('user')
+        users: async ({ id }) => {
+            const course = await UserCourse.find({ course: id }).populate('user')
             if (course != null) {
                 return course.map(({user}) => {
                     return {
                         id: user._id,
-                        ...user
+                        ...user._doc
                     }
                 })
             }
@@ -41,7 +41,7 @@ const CourseResolver = {
             const course = await Course.findById(args.id)
             return {
                 id: course._id,
-                ...course
+                ...course._doc
             }
         },
         courses: async (root, args, context) => {
@@ -49,7 +49,7 @@ const CourseResolver = {
             return courses.map(course => {
                 return {
                     id: course._id,
-                    ...course
+                    ...course._doc
                 }
             })
         },
