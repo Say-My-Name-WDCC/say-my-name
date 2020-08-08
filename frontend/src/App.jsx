@@ -8,8 +8,13 @@ import { HomePage, QuestionPage, ScorePage, ProfilePage, LoginPage, RegisterPage
 
 import './App.css';
 import MyProfilePage from './pages/User/MyProfilePage'
+<<<<<<< HEAD
 import NavBar from './components/NavBar/NavBar'
 import SideBar from './components/SideBar/SideBar'
+=======
+import AddCoursePage from './pages/Home/AddCourse'
+import UpdateUserPage from './pages/User/UpdateUser'
+>>>>>>> origin/master
 
 
 
@@ -41,13 +46,13 @@ const useStyles = makeStyles((theme) => ({
 
 const App = () => {
     const classes = useStyles()
-    const [open,setOpen] = useState(false)
+    const [open, setOpen] = useState(false)
     return (
         <ThemeProvider theme={theme}>
             <ApolloProvider client={client}>
                 <BrowserRouter>
-                    <NavBar setOpen={setOpen}/>
-                    <SideBar open={open} setOpen={setOpen}/>
+                    <NavBar setOpen={setOpen} />
+                    <SideBar open={open} setOpen={setOpen} />
                     <main
                         className={clsx(classes.content, {
                             [classes.contentShift]: !open,
@@ -56,12 +61,13 @@ const App = () => {
                         <Container className="App" maxWidth="sm">
                             <Switch>
                                 <Route exact path="/game/question/:id" component={QuestionPage} />
-                                <Route exact path="/game/score/:score" component={ScorePage} />
+                                <Route exact path="/game/score" component={ScorePage} />
                                 <Route exact path="/login" component={LoginPage} />
-                                <Route exact path="/register" component={RegisterPage} />
                                 <Route exact path="/me" component={MyProfilePage} />
                                 <Route exact path="/profile/:id" component={ProfilePage} />
                                 <Route exact path="/" component={HomePage} />
+                                <Route exact path="/addCourse" component={AddCoursePage} />
+                                <Route exact path="/updateUser" component={UpdateUserPage} />
                                 {/*}
                             <Route path="/game">
                                 <GameQuestion
