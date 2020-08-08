@@ -1,7 +1,7 @@
 import React from 'react';
 import { ThemeProvider, createMuiTheme, Container } from '@material-ui/core'
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { split, ApolloClient, ApolloProvider, createHttpLink, InMemoryCache } from '@apollo/client'
+import { ApolloClient, ApolloProvider, createHttpLink, InMemoryCache } from '@apollo/client'
 
 import HomePage from './pages/HomePage';
 import GameQuestion from './pages/GameQuestion';
