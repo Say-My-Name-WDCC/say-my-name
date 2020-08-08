@@ -1,40 +1,23 @@
-import Course from '../models/Course'
+import UserCourse from '../models/user_course'
 
-const CourseResolver = {
+const UserCourseResolver = {
     Mutation: {
-        joinCourse: async (_, { input }, context) => {
-            const { name, description } = input
-            const course = new Course({
-                name,
-                description
+        joinCourse: async (_, { course }, context) => {
+            if (!context.user) return null;
+            console.log(await context.user)
+            const userCourse = new UserCourse({
+                user: await context.user,
+                course,
             })
-            const { id } = await course.save()
-            return {
-                id: id,
-                name,
-                description,
-                user: []
-            }
+            await userCourse.save()
+            return "Success"
         },
-        leaveCourse: async (_, args, context) => {
-            const { name, description } = args.input
-            await Course.findByIdAndUpdate(args.id, {
-                name,
-                description,
-            }, function (err, result) {
-                if (err) {
-                    console.log(err)
-                }
-            })
-            return {
-                id: args.id,
-                name,
-                description,
-                user: []
-            }
+        leaveCourse: async (_, { course }, context) => {
+            if (!context.user) return null;
+            await UserCourse.deleteOne({user: context.user, course: course})
         }
     }
 }
 
 
-export { CourseResolver }
+export { UserCourseResolver }

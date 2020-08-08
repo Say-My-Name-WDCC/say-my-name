@@ -1,6 +1,21 @@
 import Course from '../models/Course'
+import UserCourse from '../models/user_course'
 
 const CourseResolver = {
+
+    Course: {
+        users: async ({ _id }) => {
+            const course = await UserCourse.find({course: _id}).populate('user')
+            if (course!= null){
+                return course.map(course => {
+                    return course.user
+                })
+            }
+            return[]
+        }
+    },
+    
+
     Query: {
         course: async (root, args, context) => {
             return await Course.findById(args.id)
@@ -21,7 +36,6 @@ const CourseResolver = {
                 id: id,
                 name,
                 description,
-                user: []
             }
         },
         updateCourse: async (_, args, context) => {
@@ -38,7 +52,6 @@ const CourseResolver = {
                 id: args.id,
                 name,
                 description,
-                user: []
             }
         }
     }

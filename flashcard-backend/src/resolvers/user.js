@@ -8,10 +8,14 @@ import Course from '../models/Course';
 const UserResolver = {
 
     User: {
-        course: async ({_id}) => {
-            const userCourse = await UserCourse.find({user: _id})
-            const course = await Course.findById(userCourse.course)
-            return course
+        courses: async ({_id}) => {
+            const course = await UserCourse.find({user: _id}).populate('course')
+            if (course!= null){
+                return course.map(course => {
+                    return course.course
+                })
+            }
+            return[]
         }
     },
 
