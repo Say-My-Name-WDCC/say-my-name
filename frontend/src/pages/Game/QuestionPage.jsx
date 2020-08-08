@@ -65,10 +65,8 @@ const QuestionPage = () => {
     }
 
     if (error) {
-        //return <Redirect to="/login" />
+        return <Redirect to="/login" />
     }
-
-
 
     return (
         <div>

@@ -3,28 +3,31 @@ import { ThemeProvider, createMuiTheme, Container } from '@material-ui/core'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import { ApolloProvider } from '@apollo/client'
 import client from './graphql'
-import { HomePage, QuestionPage, ScorePage, ProfilePage, LoginPage } from './pages'
+import { HomePage, QuestionPage, ScorePage, ProfilePage, LoginPage, RegisterPage } from './pages'
 
 import './App.css';
 import MyProfilePage from './pages/User/MyProfilePage'
+import NavBar from './components/NavBar/NavBar'
 
 
 
 const theme = createMuiTheme({
     palette: {
     },
-  });
+});
 
 const App = () => {
     return (
         <ThemeProvider theme={theme}>
-            <Container className="App" maxWidth="sm">
-                <ApolloProvider client={client}>
-                    <BrowserRouter>
+            <ApolloProvider client={client}>
+                <BrowserRouter>
+                    <NavBar />
+                    <Container className="App" maxWidth="sm">
                         <Switch>
                             <Route exact path="/game/question/:id" component={QuestionPage} />
                             <Route exact path="/game/score" component={ScorePage} />
                             <Route exact path="/login" component={LoginPage} />
+                            <Route exact path="/register" component={RegisterPage} />
                             <Route exact path="/me" component={MyProfilePage} />
                             <Route exact path="/profile/:id" component={ProfilePage} />
                             <Route exact path="/" component={HomePage} />
@@ -54,9 +57,9 @@ const App = () => {
                                 <HomePage name="Hiruna Jayamanne" courses={["SOFTENG211"]} />
                                 </Route>*/}
                         </Switch>
-                    </BrowserRouter>
-                </ApolloProvider>
-            </Container>
+                    </Container>
+                </BrowserRouter>
+            </ApolloProvider>
         </ThemeProvider>
     );
 }

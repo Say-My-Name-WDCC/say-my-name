@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Container, TextField, Typography, Box, Link, CssBaseline, Button, Avatar } from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
-import { LoginMutation } from '../../graphql/queries/UserQuery';
+import { CreateUser } from '../../graphql/queries/UserQuery';
 import { useMutation } from '@apollo/client';
 import { useHistory } from 'react-router-dom';
 
@@ -23,7 +23,6 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        margin: 'auto'
     },
     avatar: {
         margin: theme.spacing(1),
@@ -40,15 +39,20 @@ const useStyles = makeStyles((theme) => ({
 
 const LoginPage = () => {
 
-    const [login] = useMutation(LoginMutation)
+    const [login] = useMutation(CreateUser)
     const classes = useStyles()
     const history = useHistory()
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const [passwordCheck, setPasswordCheck] = useState("")
 
     const onSubmit = async (event) => {
         event.preventDefault()
+        if (password !== passwordCheck){
+            alert("passwords doesn't not equal")
+            return
+        }
         try {
             const { data } = await login({
                 variables: {
@@ -74,24 +78,25 @@ const LoginPage = () => {
                     <LockOutlinedIcon />
                 </Avatar>
                 <Typography component="h1" variant="h5">Say My Name</Typography>
-                <Typography component="h1" variant="h4">Login</Typography>
+                <Typography component="h1" variant="h4">Register</Typography>
                 <form onSubmit={onSubmit}>
                     <TextField required variant="outlined" onChange={e=>setEmail(e.target.value)} value={email} type="email" label="Email" style={{width: "100%", marginTop: "20px"}} />
                     <TextField required variant="outlined" onChange={e=>setPassword(e.target.value)} value={password} type="password" label="Password" style={{width: "100%", marginTop: "20px"}} />
+                    <TextField required variant="outlined" onChange={e=>setPasswordCheck(e.target.value)} value={passwordCheck} type="password" label="PasswordCheck" style={{width: "100%", marginTop: "20px"}} />
                     <Button
                         type="submit"
-                        fullWidth
-                        variant="contained"
-                        color="primary"
-                        className={classes.submit}
-                    >Sign In</Button>
-                    <Button
-                        onClick={()=>history.push('/register')}
                         fullWidth
                         variant="contained"
                         color="secondary"
                         className={classes.submit}
                     >Register</Button>
+                    <Button
+                        onClick={()=>history.push('/login')}
+                        fullWidth
+                        variant="contained"
+                        color="primary"
+                        className={classes.submit}
+                    >Alreadly got an account?</Button>
                 </form>
             </div>
             <Box mt={8}>
