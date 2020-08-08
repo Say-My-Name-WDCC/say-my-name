@@ -3,6 +3,7 @@ import { Typography, AppBar, Toolbar, InputBase, IconButton } from '@material-ui
 import { fade, makeStyles } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
+import Account from './Account';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -59,7 +60,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const NavBar = () => {
+const NavBar = props => {
     const classes = useStyles();
 
     return (
@@ -67,6 +68,7 @@ const NavBar = () => {
             <AppBar color='secondary' position="static">
                 <Toolbar>
                     <IconButton
+                        onClick={()=>props.setOpen(true)}
                         edge="start"
                         className={classes.menuButton}
                         color="inherit"
@@ -75,19 +77,7 @@ const NavBar = () => {
                         <MenuIcon />
                     </IconButton>
                     <Typography className={classes.title} variant="h6" noWrap>Say My Name</Typography>
-                    <div className={classes.search}>
-                        <div className={classes.searchIcon}>
-                            <SearchIcon />
-                        </div>
-                        <InputBase
-                            placeholder="Search…"
-                            classes={{
-                                root: classes.inputRoot,
-                                input: classes.inputInput,
-                            }}
-                            inputProps={{ 'aria-label': 'search' }}
-                        />
-                    </div>
+                    <Account/>
                 </Toolbar>
             </AppBar>
         </div>

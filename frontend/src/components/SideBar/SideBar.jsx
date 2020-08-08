@@ -1,30 +1,17 @@
 import React from 'react'
-import React from 'react';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
-import { Drawer, List, Divider,ListItem,ListItemIcon,ListItemText } from '@material-ui/core/Drawer';
+import { Drawer, List, Divider ,ListItem,ListItemIcon,ListItemText, IconButton } from '@material-ui/core';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
+import HomeIcon from '@material-ui/icons/Home';
+import GroupIcon from '@material-ui/icons/Group';
+import PersonIcon from '@material-ui/icons/Person';
+import { Link } from 'react-router-dom';
+
+
+const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
-    root: {
-      display: 'flex',
-    },
-    appBar: {
-      transition: theme.transitions.create(['margin', 'width'], {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.leavingScreen,
-      }),
-    },
-    appBarShift: {
-      width: `calc(100% - ${drawerWidth}px)`,
-      marginLeft: drawerWidth,
-      transition: theme.transitions.create(['margin', 'width'], {
-        easing: theme.transitions.easing.easeOut,
-        duration: theme.transitions.duration.enteringScreen,
-      }),
-    },
     menuButton: {
       marginRight: theme.spacing(2),
     },
@@ -46,23 +33,23 @@ const useStyles = makeStyles((theme) => ({
       ...theme.mixins.toolbar,
       justifyContent: 'flex-end',
     },
-    content: {
-      flexGrow: 1,
-      padding: theme.spacing(3),
-      transition: theme.transitions.create('margin', {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.leavingScreen,
-      }),
-      marginLeft: -drawerWidth,
-    },
-    contentShift: {
-      transition: theme.transitions.create('margin', {
-        easing: theme.transitions.easing.easeOut,
-        duration: theme.transitions.duration.enteringScreen,
-      }),
-      marginLeft: 0,
-    },
   }));
+
+  const nav = [
+    {
+        name: "Home",
+        icon: <HomeIcon/>,
+        location:"/"
+    },{
+      name: "Courses",
+      icon: <GroupIcon/>,
+      location: "/courses"
+    },{
+      name: "Peoples",
+      icon: <PersonIcon/>,
+      location: "/people"
+    }
+]
 
 const SideBar = (props) => {
     const classes = useStyles();
@@ -79,16 +66,16 @@ const SideBar = (props) => {
             }}
         >
             <div className={classes.drawerHeader}>
-                <IconButton onClick={handleDrawerClose}>
+                <IconButton onClick={()=>props.setOpen(false)}>
                     {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
                 </IconButton>
             </div>
             <Divider />
             <List>
-                {['Courses', 'Profiles'].map((text, index) => (
-                    <ListItem button key={text}>
-                        <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                        <ListItemText primary={text} />
+                {nav.map((item, i) => (
+                    <ListItem component={Link} to={item.location} button key={i}>
+                        <ListItemIcon>{item.icon}</ListItemIcon>
+                        <ListItemText primary={item.name} />
                     </ListItem>
                 ))}
             </List>
