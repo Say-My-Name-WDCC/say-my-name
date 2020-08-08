@@ -1,18 +1,22 @@
-import File from '../models/File'
+import { handleFileUpload } from '../middleware/s3';
 
 const FileResolver = {
     Mutation: {
-        profileUpload: async (parent, { file }, context) => {
+        profileUpload: async (_, { file }, context) => {
             if (!context.user) return null;
-            await context.user
             const response = await handleFileUpload(file);
+            await User.findByIdAndUpdate(await context.user,{
+                image: response,
+            })
             console.log(response)
             return response;
         },
-        voiceUpload: async (parent, { file }, context) => {
+        voiceUpload: async (_, { file }, context) => {
             if (!context.user) return null;
-            await context.user
             const response = await handleFileUpload(file);
+            await User.findByIdAndUpdate(await context.user,{
+                voice: response,
+            })
             console.log(response)
             return response;
         },

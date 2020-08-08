@@ -1,5 +1,5 @@
 import AWS  from 'aws-sdk';
-import uuidv4 from 'uuid/v4';
+import {v4} from 'uuid';
 
 AWS.config.update({
   accessKeyId: process.env.AWS_ACCESS_KEY,
@@ -21,7 +21,7 @@ const s3DefaultParams = {
 const handleFileUpload = async file => {
   const { createReadStream, filename } = await file;
 
-  const key = uuidv4();
+  const key = v4();
 
   return new Promise((resolve, reject) => {
     s3.upload(
