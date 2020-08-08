@@ -3,11 +3,10 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import ProfileName from './Profile';
 
 ReactDOM.render(
   <React.StrictMode>
-    <ProfileName />
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );
