@@ -7,6 +7,8 @@ import { HomePage, QuestionPage, ScorePage, ProfilePage, LoginPage } from './pag
 
 import './App.css';
 import MyProfilePage from './pages/User/MyProfilePage'
+import AddCoursePage from './pages/Home/AddCourse'
+import UpdateUserPage from './pages/User/UpdateUser'
 
 
 
@@ -28,6 +30,8 @@ const App = () => {
                             <Route exact path="/me" component={MyProfilePage} />
                             <Route exact path="/profile/:id" component={ProfilePage} />
                             <Route exact path="/" component={HomePage} />
+                            <Route exact path="/addCourse" component={AddCoursePage} /> 
+                            <Route exact path="/updateUser" component={UpdateUserPage} /> 
                             {/*}
                             <Route path="/game">
                                 <GameQuestion
