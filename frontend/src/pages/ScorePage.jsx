@@ -1,8 +1,6 @@
 import React from 'react';
-import { Button } from '@material-ui/core';
-import { Container } from '@material-ui/core';
-import { Typography } from '@material-ui/core';
-import { spacing } from '@material-ui/system';
+import { Button,Typography } from '@material-ui/core';
+import {  } from '@material-ui/core';
 
 const ScorePage = ({ score }) => {
     let textToShow = null;

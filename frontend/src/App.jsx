@@ -4,10 +4,10 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { split, ApolloClient, ApolloProvider, createHttpLink, InMemoryCache } from '@apollo/client'
 
 import HomePage from './pages/HomePage';
-import GameQuestion from './pages/gameQuestion';
+import GameQuestion from './pages/GameQuestion';
 import ScorePage from './pages/ScorePage';
 import ProfilePage from "./pages/Profile";
-import LoginPage from './pages/login';
+import LoginPage from './pages/Login';
 
 import './App.css';
 
