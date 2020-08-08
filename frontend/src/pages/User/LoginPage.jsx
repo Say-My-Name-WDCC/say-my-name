@@ -48,7 +48,6 @@ const LoginPage = () => {
 
     const onSubmit = async (event) => {
         event.preventDefault()
-        console.log("Submitted!")
         try {
             const { data } = await login({
                 variables: {

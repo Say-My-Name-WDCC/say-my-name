@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import { Paper, Grid, Avatar, LinearProgress } from '@material-ui/core';
+import { FacesQuery } from '../../graphql/queries/FileQuery';
+import Spinner from '../../components/Spinner/Spinner';
+import { Redirect, useParams } from 'react-router-dom';
+import { useQuery } from '@apollo/client';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -36,36 +40,48 @@ const BorderLinearProgress = withStyles((theme) => ({
     },
 }))(LinearProgress);
 
-const data = {
-    "faces": [
-        {
-            "id": "5f2e29659711155338ddb39a",
-            "firstname": "test2",
-            "lastname": "test2",
-            "image": null
-        }
-    ]
-}
-
-const QuestionPage = () => { 
+const QuestionPage = () => {
+    let { id } = useParams()
     const [score, setScore] = useState(0)
-    const [user, setUser] = useState()
-    useEffect(()=>{
-        setUser(data.faces[Math.floor(Math.random() * data.faces.length)])
-    },[data])
+    const [guess, setGuess] = useState()
+
     const classes = useStyles();
+
+    const { loading, error, data } = useQuery(FacesQuery, {
+        variables: {
+            courseID: id,
+            count: 4
+        }
+    })
+
+    useEffect(() => {
+        if (data !== null && !loading && !error) {
+            setGuess(data?.faces[Math.floor(Math.random() * data.faces.length)])
+        }
+    }, [data,loading,error])
+
+    if (loading) {
+        return <Spinner />
+    }
+
+    if (error) {
+        //return <Redirect to="/login" />
+    }
+
+
+
     return (
         <div>
             <br />
-            <BorderLinearProgress variant="determinate" value={score*20} />
+            <BorderLinearProgress variant="determinate" value={score * 20} />
             <Grid container spacing={3}>
                 <Grid item xs={12}>
-                    <Paper className={classes.paper}>{user?.firstname + " " + user?.lastname}</Paper>
+                    <Paper className={classes.paper}>{guess?.firstname + " " + guess?.lastname}</Paper>
                 </Grid>
                 {
-                    data.faces.map(() => {
+                    data?.faces?.map(user => {
                         return (
-                            <Grid item xs={6}>
+                            <Grid key={user.id} item xs={6}>
                                 <Paper className={classes.paper}>
                                     <center>
                                         <Avatar alt="Guess Me" src={user?.image} className={classes.large} />
