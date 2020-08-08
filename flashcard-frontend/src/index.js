@@ -5,6 +5,15 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import ScorePage from "./pages/ScorePage.js";
 
+
+
+const props = {
+  name : "yourass",
+  choices: ["image",""],
+  correct: 30
+};
+const a = "something"
+
 ReactDOM.render(
   <React.StrictMode>
     <App />
