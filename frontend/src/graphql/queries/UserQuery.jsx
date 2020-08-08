@@ -1,5 +1,5 @@
 import { gql } from '@apollo/client'
-import { UserFragment } from '../index'
+import UserFragment from '../fragments/UserFragment'
 
 const UsersQuery = gql`
     query Users {
@@ -19,4 +19,4 @@ const UserQuery = gql`
     ${UserFragment}
 `
 
-export {UsersQuery, UserQuery}
+export { UsersQuery, UserQuery }

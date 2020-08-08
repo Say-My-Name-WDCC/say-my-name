@@ -1,7 +1,28 @@
 import React from 'react';
 import { Avatar, List, ListItem, ListItemText, Typography } from '@material-ui/core';
+import { useParams } from 'react-router-dom'
+import { useQuery } from '@apollo/client'
+import { useHistory } from 'react-router-dom';
+import Spinner from '../../components/Spinner/Spinner';
+import { UserQuery } from '../../graphql';
 
 const HomePage = ({ name, courses }) => {
+    let { id } = useParams()
+    const history = useHistory()
+
+    const { loading, error, data } = useQuery(UserQuery, {
+        variables: { id: id }
+    })
+
+    if (loading) {
+        return <Spinner/>
+    }
+
+    if (error) {
+        return <Spinner/>
+    }
+
+
     return (
         <div style={{ display: "flex", flexDirection: "column", marginTop: "10px" }}>
             <div style={{ flex: 1 }}>

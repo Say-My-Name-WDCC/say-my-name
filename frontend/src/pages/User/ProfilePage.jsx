@@ -1,16 +1,15 @@
-import React from 'react';
-import ReactAudioPlayer from 'react-audio-player';
+import React from 'react'
+import ReactAudioPlayer from 'react-audio-player'
 import { useParams } from 'react-router-dom'
-import { Avatar, Typography } from "@material-ui/core";
-import Button from '@material-ui/core/Button';
+import { Avatar, Typography, Button } from "@material-ui/core"
 import { useQuery } from '@apollo/client'
-import { useHistory } from 'react-router-dom';
-import Spinner from '../../components/Spinner/Spinner';
-import { UserQuery } from '../../graphql';
+import { useHistory } from 'react-router-dom'
+import Spinner from '../../components/Spinner/Spinner'
+import { UserQuery } from '../../graphql'
 
 function ProfilePage({ name, courses }) {
     let { id } = useParams()
-    const history = useHistory();
+    const history = useHistory()
 
     const { loading, error, data } = useQuery(UserQuery, {
         variables: { id: id }
@@ -51,4 +50,4 @@ function ProfilePage({ name, courses }) {
     )
 }
 
-export default ProfilePage;
+export default ProfilePage

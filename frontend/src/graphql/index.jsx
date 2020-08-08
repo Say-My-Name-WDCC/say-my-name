@@ -30,4 +30,4 @@ const client = new ApolloClient({
 
 export default client
 
-export { CourseFragment, UserFragment, CourseQuery, UserQuery }
+export { CourseFragment, UserFragment, CourseQuery, UserQuery,CoursesQuery,UsersQuery }
