@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import HomePage from './pages/HomePage';
 import GameQuestion from './pages/gameQuestion';
+import ScorePage from './pages/ScorePage';
 import './App.css';
 
 function App() {
@@ -22,6 +23,9 @@ function App() {
               ]}
               score={50} 
               />
+          </Route>
+          <Route path="/score">
+            <ScorePage score={9} />
           </Route>
           <Route path="/">
             <HomePage name="Hiruna Jayamanne" courses={["SOFTENG211"]} />
