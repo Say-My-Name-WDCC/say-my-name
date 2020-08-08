@@ -1,62 +1,53 @@
 import React from 'react';
 import ReactAudioPlayer from 'react-audio-player';
-import { makeStyles } from '@material-ui/core/styles';
+import { useParams } from 'react-router-dom'
+import { Avatar, Typography } from "@material-ui/core";
+import Button from '@material-ui/core/Button';
+import { useQuery } from '@apollo/client'
+import { useHistory } from 'react-router-dom';
+import Spinner from '../../components/Spinner/Spinner';
+import { UserQuery } from '../../graphql';
 
-const useStyles = makeStyles((theme) => ({
-    root: {
-        background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
-        border: 0,
-        borderRadius: 3,
-        boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
-        color: 'white',
-        height: 48,
-        padding: '0 30px',
-    },
-    div: {
-        //background: 'blue'        
-    },
-    paper: {
-        padding: theme.spacing(2),
-        textAlign: 'center',
-        color: theme.palette.text.secondary,
-    },
-    small: {
-        width: theme.spacing(3),
-        height: theme.spacing(3),
-    },
-    large: {
-        width: theme.spacing(20),
-        height: theme.spacing(20),
-    },
+function ProfilePage({ name, courses }) {
+    let { id } = useParams()
+    const history = useHistory();
 
-}));
+    const { loading, error, data } = useQuery(UserQuery, {
+        variables: { id: id }
+    })
 
+    if (loading) {
+        return <Spinner/>
+    }
 
-const ProfilePage = () => {
-    const classes = useStyles();
+    if (error) {
+        return <Spinner/>
+    }
 
     return (
-        <div className={classes.div}>
-            <h3>Name:</h3>
-            <h3>Courses:</h3>
-            {/* <label className={classes.large}>Name:</label>
-            <label className={classes.large}>Courses:</label> */}
-            <span><ReactAudioPlayer
-                src="./Neville.mp3"
-                type="audio/mpeg"
-                autoPlay
-                controls /></span>
-            <span>
-                <h3><box component="span" m={1}><button className={classes.root}>Next</button></box></h3>
-            </span>
+        <div style={{ display: "flex", flexDirection: "column", height: "95vh" }}>
+            <div>
+                <Typography variant='h3' style={{ margin: "20px" }}>{data?.user.firstname + " " + data?.user.lastname}</Typography>
+                <div style={{ flex: 1, marginBottom: "20px" }}>
+                    <Avatar
+                        src={data?.user?.image}
+                        style={{ width: "10rem", height: "10rem", marginLeft: "auto", marginRight: "auto" }}
+                    />
+                </div>
+                {courses.map(c => <Typography variant='h5' style={{ color: "grey" }}>{c}</Typography>)}
+            </div>
+            <div style={{ flex: 1, display: "grid", placeItems: "center" }}>
+                <ReactAudioPlayer
+                    src={data?.user?.voice}
+                    type="audio/mpeg"
+                    autoPlay
+                    controls
+                />
+            </div>
+            <div>
+                <Button color={"primary"} size={"large"} onClick={_ => history.push("/score")}>Next</Button>
+            </div>
         </div>
-
-        // <AudioPlayer
-        //   autoPlay
-        //   src="./Neville.mp3"
-        //   onPlay={e => console.log("onPlay")}
-        //   // other props here
-        // />   
     )
 }
 

@@ -1,11 +1,22 @@
 import { gql } from '@apollo/client'
-import { CourseFragment } from '../fragments'
+import { CourseFragment } from '../index'
 
-export default gql`
+const CoursesQuery = gql`
     query Courses {
         courses {
-            ...Courses
+            ...CourseFragment
         }
     }
     ${CourseFragment}
 `
+
+const CourseQuery = gql`
+    query Course($id: ID!) {
+        course(id: $id) {
+            ...CourseFragment
+        }
+    }
+    ${CourseFragment}
+`
+
+export {CoursesQuery, CourseQuery}

@@ -1,11 +1,22 @@
 import { gql } from '@apollo/client'
-import { UserFragment } from '../fragments'
+import { UserFragment } from '../index'
 
-export default gql`
+const UsersQuery = gql`
     query Users {
         users {
-            ...Users
+            ...UserFragment
         }
     }
     ${UserFragment}
 `
+
+const UserQuery = gql`
+    query User($id: ID!) {
+        user(id: $id) {
+            ...UserFragment
+        }
+    }
+    ${UserFragment}
+`
+
+export {UsersQuery, UserQuery}

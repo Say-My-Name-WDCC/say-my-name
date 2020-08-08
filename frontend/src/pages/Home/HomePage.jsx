@@ -3,7 +3,7 @@ import { Avatar, List, ListItem, ListItemText, Typography } from '@material-ui/c
 
 const HomePage = ({ name, courses }) => {
     return (
-        <div style={{ display: "flex", flexDirection: "column" }}>
+        <div style={{ display: "flex", flexDirection: "column", marginTop: "10px" }}>
             <div style={{ flex: 1 }}>
                 <Avatar
                     src='https://image.shutterstock.com/z/stock-vector-default-avatar-profile-icon-grey-photo-placeholder-518740741.jpg'
@@ -27,4 +27,5 @@ const HomePage = ({ name, courses }) => {
         </div>
     )
 }
+
 export default HomePage

@@ -1,20 +1,13 @@
 import React from 'react'
 import { ThemeProvider, createMuiTheme, Container } from '@material-ui/core'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
-import { ApolloClient, ApolloProvider, createHttpLink, InMemoryCache } from '@apollo/client'
-
+import { ApolloProvider } from '@apollo/client'
+import client from './graphql'
 import { HomePage, QuestionPage, ScorePage, ProfilePage, LoginPage } from './pages'
 
 import './App.css';
 
-const httpLink = createHttpLink({
-    uri: process.env.REACT_APP_GRAPHQL_URL,
-});
 
-const client = new ApolloClient({
-    link: httpLink,
-    cache: new InMemoryCache()
-});
 
 const theme = createMuiTheme({
     palette: {
@@ -28,10 +21,11 @@ const App = () => {
                 <ApolloProvider client={client}>
                     <BrowserRouter>
                         <Switch>
-                            <Route exact path="/game/question" component={QuestionPage} />
+                            <Route exact path="/game/question/:id" component={QuestionPage} />
                             <Route exact path="/game/score" component={ScorePage} />
                             <Route exact path="/user/login" component={LoginPage} />
-                            <Route exact path="/user/profile" component={ProfilePage} />
+                            <Route exact path="/user/me/" component={ProfilePage} />
+                            <Route exact path="/user/profile/:id" component={ProfilePage} />
                             <Route exact path="/" component={HomePage} />
                             {/*}
                             <Route path="/game">
