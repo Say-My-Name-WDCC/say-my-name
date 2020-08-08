@@ -3,10 +3,11 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import ScorePage from "./pages/ScorePage.js";
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <ScorePage score={5}/>
   </React.StrictMode>,
   document.getElementById('root')
 );
