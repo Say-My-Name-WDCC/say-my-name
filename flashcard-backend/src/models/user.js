@@ -23,8 +23,7 @@ const UserSchema = new Schema({
     },
     voice:{
         type: String,
-    }
-})
+    }}, {timestamps: true});
 
 const User = model('User', UserSchema)
 export default User
