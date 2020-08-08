@@ -19,4 +19,26 @@ const CourseQuery = gql`
     ${CourseFragment}
 `
 
-export { CoursesQuery, CourseQuery }
+const UpdateCourse = gql`
+    mutation($id: ID!,$input: CourseInput!){
+        updateCourse(id: $id, input: $input){
+            ...CourseFragment
+        }
+    }
+    ${CourseFragment}
+`
+
+const CreateCourse = gql`
+    mutation($input: CourseInput!){
+        createCourse(input: $input){
+            ...CourseFragment
+        }
+    }
+    ${CourseFragment}
+`
+
+const FacesQuery = gql`
+    faces
+`
+
+export { CoursesQuery, CourseQuery, UpdateCourse, CreateCourse }

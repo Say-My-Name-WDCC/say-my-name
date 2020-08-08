@@ -6,6 +6,7 @@ import client from './graphql'
 import { HomePage, QuestionPage, ScorePage, ProfilePage, LoginPage } from './pages'
 
 import './App.css';
+import MyProfilePage from './pages/User/MyProfilePage'
 
 
 
@@ -23,9 +24,9 @@ const App = () => {
                         <Switch>
                             <Route exact path="/game/question/:id" component={QuestionPage} />
                             <Route exact path="/game/score" component={ScorePage} />
-                            <Route exact path="/user/login" component={LoginPage} />
-                            <Route exact path="/user/me/" component={ProfilePage} />
-                            <Route exact path="/user/profile/:id" component={ProfilePage} />
+                            <Route exact path="/login" component={LoginPage} />
+                            <Route exact path="/me" component={MyProfilePage} />
+                            <Route exact path="/profile/:id" component={ProfilePage} />
                             <Route exact path="/" component={HomePage} />
                             {/*}
                             <Route path="/game">

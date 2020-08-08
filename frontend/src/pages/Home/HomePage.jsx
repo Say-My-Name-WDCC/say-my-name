@@ -1,25 +1,22 @@
 import React from 'react';
 import { Avatar, List, ListItem, ListItemText, Typography } from '@material-ui/core';
-import { useParams } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import { useQuery } from '@apollo/client'
 import { useHistory } from 'react-router-dom';
 import Spinner from '../../components/Spinner/Spinner';
-import { UserQuery } from '../../graphql';
+import { MyCoursesQuery } from '../../graphql/queries/UserQuery';
 
-const HomePage = ({ name, courses }) => {
-    let { id } = useParams()
+const HomePage = () => {
     const history = useHistory()
 
-    const { loading, error, data } = useQuery(UserQuery, {
-        variables: { id: id }
-    })
+    const { loading, error, data } = useQuery(MyCoursesQuery)
 
     if (loading) {
         return <Spinner/>
     }
 
     if (error) {
-        return <Spinner/>
+        return <Redirect to="/login" />
     }
 
 
@@ -27,19 +24,19 @@ const HomePage = ({ name, courses }) => {
         <div style={{ display: "flex", flexDirection: "column", marginTop: "10px" }}>
             <div style={{ flex: 1 }}>
                 <Avatar
-                    src='https://image.shutterstock.com/z/stock-vector-default-avatar-profile-icon-grey-photo-placeholder-518740741.jpg'
+                    src={data?.me?.image}
                     style={{ width: "10rem", height: "10rem", marginLeft: "auto", marginRight: "auto" }}
                 />
             </div>
             <div style={{ flex: 1, display: "grid", placeItems: "center", marginTop: "10px" }}>
-                <Typography variant="h4">{name}</Typography>
+                <Typography variant="h4">{data?.me.firstname + " " + data?.me.lastname}</Typography>
             </div>
             <div style={{ flex: "auto", paddingTop: "20px" }}>
                 <List>
                     {
-                        courses.map((course) =>
+                        data?.me.courses?.map((course) =>
                             <ListItem button>
-                                <ListItemText primary={course} />
+                                <ListItemText primary={course.name} />
                             </ListItem>
                         )
                     }

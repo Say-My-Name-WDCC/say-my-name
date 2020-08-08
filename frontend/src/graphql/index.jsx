@@ -1,10 +1,5 @@
-import {CourseQuery, CoursesQuery} from './queries/CourseQuery'
-import {UserQuery, UsersQuery} from './queries/UserQuery'
-import CourseFragment from './fragments/CourseFragment'
-import UserFragment from './fragments/UserFragment'
 import { ApolloClient, createHttpLink, InMemoryCache } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
-
 
 const authLink = setContext((_, { headers }) => {
     // get the authentication token from local storage if it exists
@@ -29,5 +24,3 @@ const client = new ApolloClient({
 
 
 export default client
-
-export { CourseFragment, UserFragment, CourseQuery, UserQuery,CoursesQuery,UsersQuery }
