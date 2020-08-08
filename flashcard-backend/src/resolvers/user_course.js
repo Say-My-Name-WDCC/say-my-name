@@ -4,7 +4,6 @@ const UserCourseResolver = {
     Mutation: {
         joinCourse: async (_, { course }, context) => {
             if (!context.user) return null;
-            console.log(await context.user)
             const userCourse = new UserCourse({
                 user: await context.user,
                 course,
@@ -14,7 +13,8 @@ const UserCourseResolver = {
         },
         leaveCourse: async (_, { course }, context) => {
             if (!context.user) return null;
-            await UserCourse.deleteOne({user: context.user, course: course})
+            await UserCourse.deleteOne({user: await context.user, course: course})
+            return "Success"
         }
     }
 }

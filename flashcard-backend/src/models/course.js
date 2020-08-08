@@ -9,6 +9,9 @@ const CourseSchema = new Schema({
         type: String,
         required: true
     },
+    image: {
+        type: String,
+    }
 })
 
 const Course = model('Course', CourseSchema)

@@ -19,6 +19,8 @@ type User {
     email: String!
     firstname: String!
     lastname: String!
+    voice: String
+    image: String
     courses: [Course!]
 }
 
@@ -26,6 +28,7 @@ type Course {
     id: ID!
     name: String!
     description: String!
+    image: String
     users: [User!]!
 }
 

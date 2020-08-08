@@ -2,7 +2,6 @@ import User from '../models/user'
 
 import { createJWT, hashPassword, comparePassword } from '../middleware/auth'
 import UserCourse from '../models/user_course';
-import Course from '../models/Course';
 
 
 const UserResolver = {
