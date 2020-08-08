@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Container, Typography, Box, Link, CssBaseline, Button, Avatar } from '@material-ui/core';
+import { Container, TextField, Typography, Box, Link, CssBaseline, Button, Avatar } from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 
 const Copyright = () => {
@@ -37,6 +37,11 @@ const useStyles = makeStyles((theme) => ({
 const LoginPage = () => {
     const classes = useStyles();
 
+    function onSubmit(event) {
+        event.preventDefault()
+        console.log("Submitted!")
+    }
+
     return (
         <Container component="main" maxWidth="xs">
             <CssBaseline />
@@ -45,13 +50,17 @@ const LoginPage = () => {
                     <LockOutlinedIcon />
                 </Avatar>
                 <Typography component="h1" variant="h5">Say My Name</Typography>
-                <Button
-                    type="submit"
-                    fullWidth
-                    variant="contained"
-                    color="primary"
-                    className={classes.submit}
-                >Sign In</Button>
+                <form onSubmit={onSubmit}>
+                    <TextField required variant="outlined" label="Email" style={{width: "100%", marginTop: "20px"}} />
+                    <TextField required variant="outlined" type="password" label="Password" style={{width: "100%", marginTop: "20px"}} />
+                    <Button
+                        type="submit"
+                        fullWidth
+                        variant="contained"
+                        color="primary"
+                        className={classes.submit}
+                    >Sign In</Button>
+                </form>
             </div>
             <Box mt={8}>
                 <Copyright />
