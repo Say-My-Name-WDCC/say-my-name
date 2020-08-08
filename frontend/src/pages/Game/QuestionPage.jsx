@@ -40,7 +40,7 @@ const QuestionPage = props => {
     const classes = useStyles();
     return (
         <div>
-            <h1></h1>
+            <br/>
             <BorderLinearProgress variant="determinate" value={props.score} />
 
 

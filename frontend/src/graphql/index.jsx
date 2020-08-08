@@ -1,4 +1,8 @@
-import { CourseFragement, UserFragment } from './fragments'
-import { CourseQuery, UserQuery } from './queries'
+import CourseQuery from './queriesCourseFragement'
+import UserQuery from './queriesUserFragement'
+import CourseFragment from './fragments/CourseFragement'
+import UserFragment from './fragments/UserFragement'
 
-export { CourseFragement, UserFragment, CourseQuery, UserQuery }
+
+
+export { CourseFragment, UserFragment, CourseQuery, UserQuery }

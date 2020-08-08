@@ -11,7 +11,7 @@ const ScorePage = ({ score }) => {
         } else {
             imgToShow = "./pngfuel.com (3).png";
         }
-    } else if (score == 3) {
+    } else if (score === 3) {
         textToShow = "Your friends are waiting for you to remember their names!";
         imgToShow = "./pngfuel.com (4).png";
     } else {
@@ -29,7 +29,7 @@ const ScorePage = ({ score }) => {
                     <Typography variant="h4" style={{ color: "grey" }}>Score: {score}/5</Typography>
                     <br /><br />
 
-                    <img src={imgToShow} width="200"></img>
+                    <img alt="Guess Me" src={imgToShow} width="200"></img>
                 </div>
                 <div style={{ flex: 1 }}>
                     <Button variant="contained" size="large" color="primary" href="/" style={{ margin: "20px" }}>Back</Button>

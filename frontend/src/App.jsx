@@ -1,13 +1,9 @@
-import React from 'react';
+import React from 'react'
 import { ThemeProvider, createMuiTheme, Container } from '@material-ui/core'
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import { ApolloClient, ApolloProvider, createHttpLink, InMemoryCache } from '@apollo/client'
 
-import HomePage from './pages/HomePage';
-import GameQuestion from './pages/GameQuestion';
-import ScorePage from './pages/ScorePage';
-import ProfilePage from "./pages/Profile";
-import LoginPage from './pages/Login';
+import { HomePage, QuestionPage, ScorePage, ProfilePage, LoginPage } from './pages'
 
 import './App.css';
 
@@ -32,6 +28,12 @@ const App = () => {
                 <ApolloProvider client={client}>
                     <BrowserRouter>
                         <Switch>
+                            <Route exact path="/game/question" component={QuestionPage} />
+                            <Route exact path="/game/score" component={ScorePage} />
+                            <Route exact path="/user/login" component={LoginPage} />
+                            <Route exact path="/user/profile" component={ProfilePage} />
+                            <Route exact path="/" component={HomePage} />
+                            {/*}
                             <Route path="/game">
                                 <GameQuestion
                                     name={"A very cool names"}
@@ -55,7 +57,7 @@ const App = () => {
                             </Route>
                             <Route path="/">
                                 <HomePage name="Hiruna Jayamanne" courses={["SOFTENG211"]} />
-                            </Route>
+                                </Route>*/}
                         </Switch>
                     </BrowserRouter>
                 </ApolloProvider>
