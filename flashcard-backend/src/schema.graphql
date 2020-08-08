@@ -32,6 +32,13 @@ type Course {
     users: [User!]!
 }
 
+type Face {
+    id: ID!
+    firstname: String!
+    lastname: String!
+    image: String!
+}
+
 input LoginInput {
     email: String!
     password: String!
@@ -54,6 +61,7 @@ type Query {
     users: [User!]!
     course(id: ID!): Course!
     courses: [Course!]!
+    faces(courseID: ID!, count: Number!): [Face!]!
 }
 
 type Mutation {
