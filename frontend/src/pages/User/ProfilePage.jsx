@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const ProfileName = () => {
+const ProfilePage = () => {
     const classes = useStyles();
 
     return (
@@ -60,4 +60,4 @@ const ProfileName = () => {
     )
 }
 
-export default ProfileName;
+export default ProfilePage;
