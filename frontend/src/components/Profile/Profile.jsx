@@ -1,15 +1,11 @@
 import React from 'react'
 import ReactAudioPlayer from 'react-audio-player'
-import { useParams, Redirect } from 'react-router-dom'
-import { Avatar, Typography, Button } from "@material-ui/core"
+import { Avatar, Typography, Paper } from "@material-ui/core"
 import { useQuery } from '@apollo/client'
-import { useHistory } from 'react-router-dom'
 import Spinner from '../../components/Spinner/Spinner'
 import { UserQuery } from '../../graphql/queries/UserQuery'
 
-const ProfilePage = () => {
-    let { id } = useParams()
-    const history = useHistory()
+const Profile = ({id}) => {
 
     const { loading, error, data } = useQuery(UserQuery, {
         variables: { id: id }
@@ -20,13 +16,14 @@ const ProfilePage = () => {
     }
 
     if (error) {
-        return <Redirect to="/login" />
+        return <Spinner/>
     }
 
     return (
-        <div style={{ display: "flex", flexDirection: "column", height: "95vh" }}>
+        <div style={{ display: "flex", flexDirection: "column", height: "95vh", maxWidth: "500px", margin: 'auto', padding: 20 }}>
+            <Paper elevation={3} >
             <div>
-                <Typography variant='h3' style={{ margin: "20px" }}>{data?.user.firstname + " " + data?.user.lastname}</Typography>
+                <Typography variant='h3' style={{ fontSize:"3vw", margin: "20px" }}>{data?.user.firstname + " " + data?.user.lastname}</Typography>
                 <div style={{ flex: 1, marginBottom: "20px" }}>
                     <Avatar
                         src={data?.user?.image}
@@ -38,16 +35,15 @@ const ProfilePage = () => {
             <div style={{ flex: 1, display: "grid", placeItems: "center" }}>
                 <ReactAudioPlayer
                     src={data?.user?.voice}
-                    type="audio/mpeg"
+                    type="audio/mp3"
                     autoPlay
                     controls
                 />
+                <br/>
             </div>
-            <div>
-                <Button color={"primary"} size={"large"} onClick={_ => history.push("/score")}>Next</Button>
-            </div>
+            </Paper >
         </div>
     )
 }
 
-export default ProfilePage
+export default Profile

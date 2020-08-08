@@ -8,19 +8,13 @@ const UserResolver = {
 
     User: {
         courses: async ({ id }) => {
-            console.log(id)
             const courses = await UserCourse.find({ user: id }).populate('course')
             if (courses != null) {
                 return courses.map(course => {
-                    console.log("course")
-                    console.log(course.course._id)
-                    const c = {
+                    return {
                         id: course.course._id,
                         ...course.course._doc
                     }
-                    console.log("output")
-                    console.log(c)
-                    return c
                 })
             }
             return []
@@ -31,12 +25,10 @@ const UserResolver = {
         me: async (root, args, context) => {
             if (!context.user) return null;
             const user = await User.findById(await context.user)
-            console.log(user)
             const test = {
                 id: user._id,
                 ...user._doc
             }
-            console.log(test)
             return test
         },
         user: async (root, args, context) => {
