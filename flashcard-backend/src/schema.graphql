@@ -1,0 +1,36 @@
+type AuthToken {
+  accessToken: String!
+  expiredAt: String!
+}
+
+type AuthResponse {
+  authToken: AuthToken!
+  user: User!
+}
+
+type User {
+    id: ID!
+    name: String!
+}
+
+input LoginInput {
+    username: String!
+    password: String!
+}
+
+input UserInput {
+    name: String!
+    username: String!
+    password: String!
+}
+
+type Query {
+    user: User!
+    users: [User!]!
+}
+
+type Mutation {
+    login(input: LoginInput!): AuthResponse!
+    updateUser(input: UserInput): User!
+    createUser(input: UserInput): AuthResponse!
+}
