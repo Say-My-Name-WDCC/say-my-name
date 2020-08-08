@@ -5,7 +5,7 @@ import {connect, connection} from 'mongoose'
 import express from 'express'
 import cors from 'cors'
 import dotenv from 'dotenv'
-
+import { decodeJWT } from './middleware/auth.js'
 dotenv.config()
 
 const PORT = 4001
@@ -18,10 +18,9 @@ const server = new ApolloServer({
     typeDefs,
     resolvers,
     context: async ({ req }) => {
-        const token = req.headers.authorization;
-
+        const token = req.headers.authorization || '';
         if (token) {
-            const user = await User.getUser(token);
+            const user = decodeJWT(token);
             return { user };
         }
     }
