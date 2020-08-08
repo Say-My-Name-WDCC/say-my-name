@@ -5,7 +5,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-//import Neville from '../public/'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -37,9 +36,8 @@ const useStyles = makeStyles((theme) => ({
   }));
 
 
-function ProfileName(){  
-
-    const classes = useStyles();     
+function ProfileName(){
+    const classes = useStyles();
 
     return(
         <div className={classes.div}>
@@ -53,7 +51,7 @@ function ProfileName(){
         autoPlay
         controls/></span>
         <span>
-            <h3><box component="span" m={1}><button className={classes.root}>Next</button></box></h3>
+            <h3><box component="span" m={1}><button onClick={clickHandler} className={classes.root}>Next</button></box></h3>
               </span>              
         </div>
                 
