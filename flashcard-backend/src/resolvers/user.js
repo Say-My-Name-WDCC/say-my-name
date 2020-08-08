@@ -2,24 +2,34 @@ import User from '../models/user'
 
 const UserResolver = {
     Query: {
-        async user(root, args, context){
+        user: async (root, args, context) =>{
             return await User.findById(id)
         },
-        async users(root, args, context){
+        users: async(root, args, context) =>{
             return await User.find({})
         }   
     },
     Mutation:{
-        async login(_, args, context){
+        login: async(_, args, context) => {
             
         },
-        async createUser(_, args, context){
-            
+        createUser: async (_, args, context) =>{
+            console.log(args)
+            return {
+                authToken: {
+                    accessToken: "test",
+                    expiredAt: "test"
+                },
+                user: {
+                    id: "",
+                    name: ""
+                }
+            }
         },
-        async updateUser(_, args, context){
-            
+        updateUser: async (_, args, context) =>{
+            return
         }
     }
 }
 
-const 
+export {UserResolver}
