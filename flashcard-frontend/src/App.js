@@ -23,6 +23,9 @@ function App() {
               score={50} 
               />
           </Route>
+          <Route path="/result">
+              <PlaceHolder />
+          </Route>
           <Route path="/">
             <HomePage name="Hiruna Jayamanne" courses={["SOFTENG211"]} />
           </Route>
@@ -30,6 +33,12 @@ function App() {
       </BrowserRouter>
     </Container>
   );
+}
+
+function PlaceHolder(){
+  return (<div>
+
+  </div>)
 }
 
 export default App;
