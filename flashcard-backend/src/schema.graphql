@@ -13,7 +13,7 @@ type User {
     email: String!
     firstname: String!
     lastname: String!
-    course: [Course!]!
+    course: [Course!]
 }
 
 type Course {
@@ -35,9 +35,15 @@ input UserInput {
     password: String!
 }
 
+input CourseInput {
+    name: String!
+    description: String!
+}
+
 type Query {
     user(id: ID!): User!
     users: [User!]!
+    course(id: ID!): Course!
     courses: [Course!]!
 }
 
@@ -45,4 +51,8 @@ type Mutation {
     login(input: LoginInput!): AuthResponse!
     updateUser(id: ID!,input: UserInput!): User!
     createUser(input: UserInput!): AuthResponse!
+    updateCourse(id: ID!, input: CourseInput!): Course!
+    createCourse(input: CourseInput!): Course!
+    joinCourse(course: ID!): Course!
+    leaveCourse(course: ID!): Course!
 }

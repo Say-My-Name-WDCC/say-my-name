@@ -9,10 +9,7 @@ const CourseSchema = new Schema({
         type: String,
         required: true
     },
-    logouri: {
-        type: String,
-        required: true
-    },
 })
+
 const Course = model('Course', CourseSchema)
 export default Course

@@ -17,6 +17,7 @@
         "express": "^4.17.1",
         "express-jwt": "^6.0.0",
         "graphql": "^15.3.0",
+        "graphql-merge-resolvers": "^1.1.16",
         "jsonwebtoken": "^8.5.1",
         "mongoose": "^5.9.27",
         "morgan": "~1.9.1"

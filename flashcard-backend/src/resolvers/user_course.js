@@ -1,16 +1,8 @@
 import Course from '../models/Course'
 
 const CourseResolver = {
-    Query: {
-        course: async (root, args, context) => {
-            return await Course.findById(args.id)
-        },
-        courses: async (root, args, context) => {
-            return await Course.find({})
-        }
-    },
     Mutation: {
-        createCourse: async (_, { input }, context) => {
+        joinCourse: async (_, { input }, context) => {
             const { name, description } = input
             const course = new Course({
                 name,
@@ -24,7 +16,7 @@ const CourseResolver = {
                 user: []
             }
         },
-        updateCourse: async (_, args, context) => {
+        leaveCourse: async (_, args, context) => {
             const { name, description } = args.input
             await Course.findByIdAndUpdate(args.id, {
                 name,

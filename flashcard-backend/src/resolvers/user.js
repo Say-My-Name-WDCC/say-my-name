@@ -1,11 +1,20 @@
 import User from '../models/user'
 
 import { createJWT, hashPassword, comparePassword } from '../middleware/auth'
-import UserCourse from '../models/user_course'
-
+import UserCourse from '../models/user_course';
+import Course from '../models/Course';
 
 
 const UserResolver = {
+
+    User: {
+        course: async ({_id}) => {
+            const userCourse = await UserCourse.find({user: _id})
+            const course = await Course.findById(userCourse.course)
+            return course
+        }
+    },
+
     Query: {
         user: async (root, args, context) => {
             if (!context.user) return null;
