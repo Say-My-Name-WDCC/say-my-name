@@ -1,9 +1,7 @@
 import React from 'react'
 import ReactAudioPlayer from 'react-audio-player'
-import { useParams, Redirect } from 'react-router-dom'
-import { Avatar, Typography, Button, Paper } from "@material-ui/core"
+import { Avatar, Typography, Paper } from "@material-ui/core"
 import { useQuery } from '@apollo/client'
-import { useHistory } from 'react-router-dom'
 import Spinner from '../../components/Spinner/Spinner'
 import { UserQuery } from '../../graphql/queries/UserQuery'
 
@@ -18,7 +16,6 @@ const Profile = ({id}) => {
     }
 
     if (error) {
-        console.log(error)
         return <Spinner/>
     }
 
@@ -26,7 +23,7 @@ const Profile = ({id}) => {
         <div style={{ display: "flex", flexDirection: "column", height: "95vh", maxWidth: "500px", margin: 'auto', padding: 20 }}>
             <Paper elevation={3} >
             <div>
-                <Typography variant='h3' style={{ margin: "20px" }}>{data?.user.firstname + " " + data?.user.lastname}</Typography>
+                <Typography variant='h3' style={{ fontSize:"3vw", margin: "20px" }}>{data?.user.firstname + " " + data?.user.lastname}</Typography>
                 <div style={{ flex: 1, marginBottom: "20px" }}>
                     <Avatar
                         src={data?.user?.image}
@@ -42,6 +39,7 @@ const Profile = ({id}) => {
                     autoPlay
                     controls
                 />
+                <br/>
             </div>
             </Paper >
         </div>

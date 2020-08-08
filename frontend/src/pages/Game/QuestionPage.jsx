@@ -53,7 +53,7 @@ const QuestionPage = () => {
 
     const classes = useStyles();
 
-    const { loading, error, data } = useQuery(FacesQuery, {
+    const { loading, error, data, refetch } = useQuery(FacesQuery, {
         variables: {
             courseID: id,
             count: 4
@@ -67,7 +67,7 @@ const QuestionPage = () => {
     }, [data, loading, error])
 
     useEffect(() => {
-        if (step > 5) {
+        if (step >= 5) {
             history.push('/game/score/' + score)
         }
     }, [step])
@@ -85,8 +85,6 @@ const QuestionPage = () => {
     const handleGuess = (user) => {
         if (guess.id === user.id) {
             setScore(score + 1)
-        } else {
-            
         }
         setPop(user.id)
         setOpen(true)
@@ -94,6 +92,7 @@ const QuestionPage = () => {
     }
 
     const handleClose = () => {
+        refetch()
         setOpen(false)
     }
 
@@ -106,7 +105,7 @@ const QuestionPage = () => {
                 aria-labelledby="simple-modal-title"
                 aria-describedby="simple-modal-description"
             >
-                <Profile id={pop}/>
+                <Profile id={pop} />
             </Modal>
             <BorderLinearProgress variant="determinate" value={step * 20} />
             <Grid container spacing={3}>

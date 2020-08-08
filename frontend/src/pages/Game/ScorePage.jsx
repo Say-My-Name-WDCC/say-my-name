@@ -1,24 +1,25 @@
 import React from 'react';
 import { Button, Typography } from '@material-ui/core';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 
 const ScorePage = () => {
     let { score } = useParams()
+    const history = useHistory()
     let textToShow = null;
     let imgToShow = null;
     if (score >= 4) {
         textToShow = "WOW, You are amazing!!!";
         if (score >= 5) {
-            imgToShow = "./pngfuel.com (2).png";
+            imgToShow = "/gold.png";
         } else {
-            imgToShow = "./pngfuel.com (3).png";
+            imgToShow = "/silver.png";
         }
     } else if (score === 3) {
         textToShow = "Your friends are waiting for you to remember their names!";
-        imgToShow = "./pngfuel.com (4).png";
+        imgToShow = "/bronze.png";
     } else {
         textToShow = "How dare you forgot my name!";
-        imgToShow = "cry.png";
+        imgToShow = "/cry.png";
     }
 
     return (
@@ -34,9 +35,9 @@ const ScorePage = () => {
                     <img alt="Guess Me" src={imgToShow} width="200"></img>
                 </div>
                 <div style={{ flex: 1 }}>
-                    <Button variant="contained" size="large" color="primary" href="/" style={{ margin: "20px" }}>Back</Button>
+                    <Button variant="contained" size="large" color="primary" href="/" style={{ margin: "20px" }}>Home</Button>
 
-                    <Button variant="contained" size="large" color="primary" href="/game">Play Again</Button>
+                    <Button variant="contained" size="large" color="primary" onClick={()=>history.goBack()}>Play Again</Button>
                 </div>
             </div>
         </center>
