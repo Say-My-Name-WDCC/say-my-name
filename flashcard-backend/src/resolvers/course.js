@@ -14,7 +14,7 @@ const CourseResolver = {
             return[]
         }
     },
-    
+
 
     Query: {
         course: async (root, args, context) => {

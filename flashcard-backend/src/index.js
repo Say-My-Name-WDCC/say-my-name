@@ -33,8 +33,8 @@ connect(process.env.MONGODB_URL, {
     useCreateIndex: true
 })
 
-const db = connection;
-db.on('error', console.error.bind(console, 'connection error:'));
+const db = connection
+db.on('error', console.error.bind(console, 'connection error:'))
 db.once('open', function() {
   // we're connected!
 })

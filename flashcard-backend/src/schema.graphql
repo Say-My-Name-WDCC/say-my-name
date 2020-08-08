@@ -8,6 +8,12 @@ type AuthResponse {
   user: User!
 }
 
+type File {
+    filename: String!
+    mimetype: String!
+    encoding: String!
+}
+
 type User {
     id: ID!
     email: String!
@@ -55,4 +61,6 @@ type Mutation {
     createCourse(input: CourseInput!): Course!
     joinCourse(course: ID!): String!
     leaveCourse(course: ID!): String!
+    profileUpload(file: Upload!): String!
+    voiceUpload(file: Upload!): String!
 }
