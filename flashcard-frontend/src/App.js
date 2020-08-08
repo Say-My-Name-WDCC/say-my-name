@@ -6,6 +6,7 @@ import HomePage from './pages/HomePage';
 import GameQuestion from './pages/gameQuestion';
 import ScorePage from './pages/ScorePage';
 import ProfilePage from "./pages/Profile";
+import LoginPage from './pages/login';
 import './App.css';
 
 function App() {
@@ -30,6 +31,9 @@ function App() {
           </Route>
           <Route path="/profile">
             <ProfilePage />
+          </Route>
+          <Route path="/login">
+            <LoginPage />
           </Route>
           <Route path="/">
             <HomePage name="Hiruna Jayamanne" courses={["SOFTENG211"]} />

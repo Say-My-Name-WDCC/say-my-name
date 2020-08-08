@@ -51,7 +51,7 @@ function ProfileName(){
         autoPlay
         controls/></span>
         <span>
-            <h3><box component="span" m={1}><button onClick={clickHandler} className={classes.root}>Next</button></box></h3>
+            <h3><box component="span" m={1}><button className={classes.root}>Next</button></box></h3>
               </span>              
         </div>
                 
