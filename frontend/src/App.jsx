@@ -25,7 +25,7 @@ const App = () => {
                     <Container className="App" maxWidth="sm">
                         <Switch>
                             <Route exact path="/game/question/:id" component={QuestionPage} />
-                            <Route exact path="/game/score" component={ScorePage} />
+                            <Route exact path="/game/score/:score" component={ScorePage} />
                             <Route exact path="/login" component={LoginPage} />
                             <Route exact path="/register" component={RegisterPage} />
                             <Route exact path="/me" component={MyProfilePage} />

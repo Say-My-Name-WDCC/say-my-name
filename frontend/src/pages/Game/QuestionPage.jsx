@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
-import { Paper, Grid, Avatar, LinearProgress } from '@material-ui/core';
+import { Paper, Grid, Avatar, LinearProgress, Modal } from '@material-ui/core';
 import { FacesQuery } from '../../graphql/queries/FileQuery';
 import Spinner from '../../components/Spinner/Spinner';
-import { Redirect, useParams } from 'react-router-dom';
+import { Redirect, useParams, useHistory } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
+import ScorePage from './ScorePage';
+import Profile from '../../components/Profile/Profile';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -42,7 +44,11 @@ const BorderLinearProgress = withStyles((theme) => ({
 
 const QuestionPage = () => {
     let { id } = useParams()
+    const history = useHistory()
+    const [open, setOpen] = useState(false)
     const [score, setScore] = useState(0)
+    const [pop, setPop] = useState("")
+    const [step, setStep] = useState(0)
     const [guess, setGuess] = useState()
 
     const classes = useStyles();
@@ -58,7 +64,13 @@ const QuestionPage = () => {
         if (data !== null && !loading && !error) {
             setGuess(data?.faces[Math.floor(Math.random() * data.faces.length)])
         }
-    }, [data,loading,error])
+    }, [data, loading, error])
+
+    useEffect(() => {
+        if (step > 5) {
+            history.push('/game/score/' + score)
+        }
+    }, [step])
 
     if (loading) {
         return <Spinner />
@@ -68,10 +80,35 @@ const QuestionPage = () => {
         return <Redirect to="/login" />
     }
 
+
+
+    const handleGuess = (user) => {
+        if (guess.id === user.id) {
+            setScore(score + 1)
+        } else {
+            
+        }
+        setPop(user.id)
+        setOpen(true)
+        setStep(step + 1)
+    }
+
+    const handleClose = () => {
+        setOpen(false)
+    }
+
     return (
         <div>
             <br />
-            <BorderLinearProgress variant="determinate" value={score * 20} />
+            <Modal
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="simple-modal-title"
+                aria-describedby="simple-modal-description"
+            >
+                <Profile id={pop}/>
+            </Modal>
+            <BorderLinearProgress variant="determinate" value={step * 20} />
             <Grid container spacing={3}>
                 <Grid item xs={12}>
                     <Paper className={classes.paper}>{guess?.firstname + " " + guess?.lastname}</Paper>
@@ -80,7 +117,7 @@ const QuestionPage = () => {
                     data?.faces?.map(user => {
                         return (
                             <Grid key={user.id} item xs={6}>
-                                <Paper className={classes.paper}>
+                                <Paper onClick={() => handleGuess(user)} className={classes.paper}>
                                     <center>
                                         <Avatar alt="Guess Me" src={user?.image} className={classes.large} />
                                     </center>

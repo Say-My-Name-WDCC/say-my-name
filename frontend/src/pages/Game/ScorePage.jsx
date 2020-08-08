@@ -1,7 +1,9 @@
 import React from 'react';
 import { Button, Typography } from '@material-ui/core';
+import { useParams } from 'react-router-dom';
 
-const ScorePage = ({ score }) => {
+const ScorePage = () => {
+    let { score } = useParams()
     let textToShow = null;
     let imgToShow = null;
     if (score >= 4) {
