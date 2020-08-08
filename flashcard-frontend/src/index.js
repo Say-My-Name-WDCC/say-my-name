@@ -7,7 +7,7 @@ import ScorePage from "./pages/ScorePage.js";
 
 ReactDOM.render(
   <React.StrictMode>
-    <ScorePage score={5}/>
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );
