@@ -11,7 +11,11 @@ const UserResolver = {
             const course = await UserCourse.find({user: _id}).populate('course')
             if (course!= null){
                 return course.map(course => {
-                    return course.course
+                    return {
+                        id: course.course._id,
+                        ...course.course
+                    }
+                        
                 })
             }
             return[]

@@ -30,7 +30,7 @@ type Face {
     id: ID!
     firstname: String!
     lastname: String!
-    image: String!
+    image: String
 }
 
 input LoginInput {
@@ -55,7 +55,7 @@ type Query {
     users: [User!]!
     course(id: ID!): Course!
     courses: [Course!]!
-    faces(courseID: ID!, count: Number!): [Face!]!
+    faces(courseID: ID!, count: Int!): [Face!]!
 }
 
 type Mutation {

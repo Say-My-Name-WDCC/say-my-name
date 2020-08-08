@@ -1,18 +1,20 @@
 import Course from '../models/Course'
 import UserCourse from '../models/user_course'
 
-const shuffle=(arr1) =>{
+const shuffle=(arr) =>{
         // shuffle arr
-        let ctr = c.length;
+        let arr1 = arr.slice()
+        let ctr = arr1.length;
         let temp;
         let index;
         while (ctr > 0) {
             index = Math.floor(Math.random() * ctr);
             ctr--;
-            temp = arra1[ctr];
-            arra1[ctr] = arra1[index];
-            arra1[index] = temp;
+            temp = arr1[ctr];
+            arr1[ctr] = arr1[index];
+            arr1[index] = temp;
         }
+        //console.log(arr1)
         return arr1
 } 
 
@@ -22,8 +24,11 @@ const CourseResolver = {
         users: async ({ _id }) => {
             const course = await UserCourse.find({ course: _id }).populate('user')
             if (course != null) {
-                return course.map(course => {
-                    return course.user
+                return course.map(({user}) => {
+                    return {
+                        id: user._id,
+                        ...user
+                    }
                 })
             }
             return []
@@ -40,14 +45,19 @@ const CourseResolver = {
         },
         faces: async (root, args, context) => {
             const { courseID, count } = args
-
-            const courses = await UserCourse.find({ course: _id }).limit(count).populate('user')
+            const courses = await UserCourse.find({ course: courseID }).limit(count).populate('user')
+            console.log(courses)
             if (courses != null) {
-                return shuffle(courses.map(course => {
-                    return course.user
+                const array = shuffle(courses.map(({user}) => {
+                    return {
+                        id: user._id,
+                        ...user._doc
+                    }
                 }))
+                console.log(array)
+                return array
             }
-
+            return []
         }
     },
     Mutation: {
