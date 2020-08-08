@@ -38,10 +38,20 @@ const CourseResolver = {
 
     Query: {
         course: async (root, args, context) => {
-            return await Course.findById(args.id)
+            const course = await Course.findById(args.id)
+            return {
+                id: course._id,
+                ...course
+            }
         },
         courses: async (root, args, context) => {
-            return await Course.find({})
+            const courses = await Course.find({})
+            return courses.map(course => {
+                return {
+                    id: course._id,
+                    ...course
+                }
+            })
         },
         faces: async (root, args, context) => {
             const { courseID, count } = args

@@ -23,13 +23,32 @@ const UserResolver = {
     },
 
     Query: {
+        me: async(root, args, context) => {
+            if (!context.user) return null;
+            const user = await User.findById(await context.user)
+            console.log(user)
+            return {
+                id: user._id,
+                ...user
+            }
+        },
         user: async (root, args, context) => {
             if (!context.user) return null;
-            return await User.findById(args.id)
+            const user = await User.findById(args.id)
+            return {
+                id: user._id,
+                ...user
+            }
         },
         users: async (root, args, context) => {
             if (!context.user) return null;
-            return await User.find({})
+            const users = await User.find({})
+            return users.map(user => {
+                return {
+                    id: user._id,
+                    ...user
+                }
+            })
         }
     },
     Mutation: {
