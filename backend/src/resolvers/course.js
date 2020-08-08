@@ -69,7 +69,7 @@ const CourseResolver = {
             await Course.findByIdAndUpdate(args.id, {
                 name,
                 description,
-            }, function (err, result) {
+            }, (err, result)=> {
                 if (err) {
                     console.log(err)
                 }

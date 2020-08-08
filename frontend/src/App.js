@@ -9,7 +9,7 @@ import ProfilePage from "./pages/Profile";
 import LoginPage from './pages/login';
 import './App.css';
 
-function App() {
+const App = () => {
   return (
     <Container className="App" maxWidth="sm">
       <BrowserRouter>

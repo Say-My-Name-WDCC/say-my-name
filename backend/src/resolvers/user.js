@@ -74,7 +74,7 @@ const UserResolver = {
                 firstname,
                 lastname,
                 email
-            }, function(err, result){
+            }, (err, result) => {
                 if(err){
                     console.log(err)
                 }

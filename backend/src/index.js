@@ -35,7 +35,7 @@ connect(process.env.MONGODB_URL, {
 
 const db = connection
 db.on('error', console.error.bind(console, 'connection error:'))
-db.once('open', function() {
+db.once('open', () => {
   // we're connected!
 })
 

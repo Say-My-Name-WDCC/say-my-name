@@ -1,7 +1,7 @@
 import React from 'react';
 import { Avatar, List, ListItem, ListItemText, Typography } from '@material-ui/core';
 
-export default function HomePage({name, courses}) {
+const HomePage = ({name, courses}) => {
     return (
         <div style={{display: "flex", flexDirection: "column"}}>
             <div style={{flex: 1}}>
@@ -27,3 +27,4 @@ export default function HomePage({name, courses}) {
         </div>
     )
 }
+export default HomePage

@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
   }));
 
 
-function ProfileName(){
+const ProfileName = () =>{
     const classes = useStyles();
 
     return(
