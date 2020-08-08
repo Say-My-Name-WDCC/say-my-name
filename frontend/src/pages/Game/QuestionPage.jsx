@@ -5,7 +5,6 @@ import { FacesQuery } from '../../graphql/queries/FileQuery';
 import Spinner from '../../components/Spinner/Spinner';
 import { Redirect, useParams, useHistory } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
-import ScorePage from './ScorePage';
 import Profile from '../../components/Profile/Profile';
 
 const useStyles = makeStyles((theme) => ({
@@ -66,12 +65,6 @@ const QuestionPage = () => {
         }
     }, [data, loading, error])
 
-    useEffect(() => {
-        if (step >= 5) {
-            history.push('/game/score/' + score)
-        }
-    }, [step])
-
     if (loading) {
         return <Spinner />
     }
@@ -79,8 +72,6 @@ const QuestionPage = () => {
     if (error) {
         return <Redirect to="/login" />
     }
-
-
 
     const handleGuess = (user) => {
         if (guess.id === user.id) {
@@ -92,6 +83,9 @@ const QuestionPage = () => {
     }
 
     const handleClose = () => {
+        if (step >= 5) {
+            history.push('/game/score/' + score)
+        }
         refetch()
         setOpen(false)
     }
