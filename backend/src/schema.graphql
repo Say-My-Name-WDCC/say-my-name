@@ -8,12 +8,6 @@ type AuthResponse {
   user: User!
 }
 
-type File {
-    filename: String!
-    mimetype: String!
-    encoding: String!
-}
-
 type User {
     id: ID!
     email: String!
