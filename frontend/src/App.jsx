@@ -59,7 +59,7 @@ const App = () => {
                         <Container className="App" maxWidth="sm">
                             <Switch>
                                 <Route exact path="/game/question/:id" component={QuestionPage} />
-                                <Route exact path="/game/score/:id" component={ScorePage} />
+                                <Route exact path="/game/score/:score" component={ScorePage} />
                                 <Route exact path="/login" component={LoginPage} />
                                 <Route exact path="/me" component={MyProfilePage} />
                                 <Route exact path="/profile/:id" component={ProfilePage} />
