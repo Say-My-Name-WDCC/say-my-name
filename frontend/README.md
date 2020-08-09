@@ -7,6 +7,14 @@ The following project uses:
 - [MaterialUI](https://material-ui.com/)
 - [Apollo/GraphQL](https://www.apollographql.com/)
 
+## Set-up
+Create an ```.env``` with the following variable
+```
+REACT_APP_GRAPHQL_URL= Your_GraphQL_gateway
+
+```
+example: http://localhost:4001/graphql/
+
 ## Available Scripts
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
