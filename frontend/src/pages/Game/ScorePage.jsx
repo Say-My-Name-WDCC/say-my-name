@@ -14,7 +14,7 @@ const ScorePage = () => {
         } else {
             imgToShow = "/silver.png";
         }
-    } else if (score === 3) {
+    } else if (score >= 3) {
         textToShow = "Your friends are waiting for you to remember their names!";
         imgToShow = "/bronze.png";
     } else {
