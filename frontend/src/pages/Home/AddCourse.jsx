@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Container, TextField, Typography, Box, Link, CssBaseline, Button, Avatar } from '@material-ui/core';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
-import { CreateCourse } from '../../graphql/queries/CourseQuery';
+import GroupAddIcon from '@material-ui/icons/GroupAdd';
+import { CreateCourse, CoursesQuery } from '../../graphql/queries/CourseQuery';
 import { useMutation } from '@apollo/client';
 import { useHistory } from 'react-router-dom';
 
@@ -58,11 +58,9 @@ const AddCoursePage = () => {
                         name:courseName,
                         description:courseDescription
                     }
-                }
+                }, refetchQueries: [{query: CoursesQuery} ]
             })
-            //localStorage.setItem("token", data.login.authToken.accessToken)
-            //history.push('/')
-            //window.location.reload()
+            history.push('/courses')
         } catch (e) {
             alert(e)
         }
@@ -73,9 +71,9 @@ const AddCoursePage = () => {
             <CssBaseline />
             <div className={classes.paper}>
                 <Avatar className={classes.avatar}>
-                    <LockOutlinedIcon />
+                    <GroupAddIcon />
                 </Avatar>
-                <Typography component="h1" variant="h5">Say My Name</Typography>
+                <Typography component="h1" variant="h5">Add a Course</Typography>
                 <form onSubmit={onSubmit}>
                     <TextField required variant="outlined" onChange={e=>setCourseName(e.target.value)} value={courseName} type="TextField" label="Name" style={{width: "100%", marginTop: "20px"}} />
                     <TextField required variant="outlined" onChange={e=>setCourseDescription(e.target.value)} value={courseDescription} type="TextField" label="Description" style={{width: "100%", marginTop: "20px"}} />

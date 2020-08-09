@@ -37,4 +37,10 @@ const CreateCourse = gql`
     ${CourseFragment}
 `
 
-export { CoursesQuery, CourseQuery, UpdateCourse, CreateCourse }
+const JoinCourse = gql`
+    mutation($id: ID!){
+        joinCourse(course: $id)
+    }
+`
+
+export { CoursesQuery, CourseQuery, UpdateCourse, CreateCourse,JoinCourse }

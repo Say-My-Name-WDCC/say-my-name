@@ -12,6 +12,7 @@ import NavBar from './components/NavBar/NavBar'
 import SideBar from './components/SideBar/SideBar'
 import AddCoursePage from './pages/Home/AddCourse'
 import UpdateUserPage from './pages/User/UpdateUser'
+import Courses from './pages/Home/Courses'
 
 
 
@@ -58,13 +59,16 @@ const App = () => {
                         <Container className="App" maxWidth="sm">
                             <Switch>
                                 <Route exact path="/game/question/:id" component={QuestionPage} />
-                                <Route exact path="/game/score" component={ScorePage} />
+                                <Route exact path="/game/score/:id" component={ScorePage} />
                                 <Route exact path="/login" component={LoginPage} />
                                 <Route exact path="/me" component={MyProfilePage} />
                                 <Route exact path="/profile/:id" component={ProfilePage} />
                                 <Route exact path="/" component={HomePage} />
-                                <Route exact path="/addCourse" component={AddCoursePage} />
-                                <Route exact path="/updateUser" component={UpdateUserPage} />
+                                <Route exact path="/courses" component={Courses} />
+                                <Route exact path="/add/course" component={AddCoursePage} />
+                                <Route exact path="/edit/course/:id" component={AddCoursePage} />
+                                <Route exact path="/edit/me" component={UpdateUserPage} />
+                                <Route exact path="/register" component={RegisterPage}/>
                                 {/*}
                             <Route path="/game">
                                 <GameQuestion
