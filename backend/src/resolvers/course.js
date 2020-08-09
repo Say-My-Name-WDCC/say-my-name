@@ -1,10 +1,10 @@
 import Course from '../models/Course'
 import UserCourse from '../models/user_course'
 
-const shuffle = (arr) => {
+const shuffle = (arr, count) => {
     // shuffle arr
     let arr1 = arr.slice()
-    let ctr = arr1.length;
+    let ctr = count;
     let temp;
     let index;
     while (ctr > 0) {
@@ -54,14 +54,14 @@ const CourseResolver = {
         },
         faces: async (root, args, context) => {
             const { courseID, count } = args
-            const courses = await UserCourse.find({ course: courseID }).limit(count).populate('user')
+            const courses = await UserCourse.find({ course: courseID }).populate('user')
             if (courses != null) {
                 const array = shuffle(courses.map(({ user }) => {
                     return {
                         id: user._id,
                         ...user._doc
                     }
-                }))
+                }), count)
                 return array
             }
             return []
