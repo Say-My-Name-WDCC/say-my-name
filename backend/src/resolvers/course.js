@@ -4,17 +4,17 @@ import UserCourse from '../models/user_course'
 const shuffle = (arr, count) => {
     // shuffle arr
     let arr1 = arr.slice()
-    let ctr = count;
+    let ctr = arr1.length
     let temp;
     let index;
     while (ctr > 0) {
         index = Math.floor(Math.random() * ctr);
         ctr--;
         temp = arr1[ctr];
-        arr1[ctr] = arr1[index];
-        arr1[index] = temp;
+        arr1[ctr] = arr1[index]
+        arr1[index] = temp
     }
-    return arr1
+    return arr1.slice(0,count)
 }
 
 const CourseResolver = {
@@ -61,7 +61,7 @@ const CourseResolver = {
                         id: user._id,
                         ...user._doc
                     }
-                }), count)
+                }),count)
                 return array
             }
             return []
