@@ -18,7 +18,7 @@ const ScorePage = () => {
         textToShow = "Your friends are waiting for you to remember their names!";
         imgToShow = "/bronze.png";
     } else {
-        textToShow = "How dare you forgot my name!";
+        textToShow = "How dare you forget my name!";
         imgToShow = "/cry.png";
     }
 
