@@ -2,9 +2,6 @@
 
 [Self Hosted](https://saymyname.tk)
 
-This project is an assignment for Microsoft Student Accelerator NZ 2020 Phase 1.
-Front End Development - React Web App.
-
 The following project uses:
 - ReactJS
 - [MaterialUI](https://material-ui.com/)
