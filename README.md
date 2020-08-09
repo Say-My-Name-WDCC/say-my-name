@@ -10,9 +10,9 @@ Say My Name uses:
 - Material UI
 
 ## Getting Started
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Setup Backend](Backend/README.md)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Setup Backend](backend/README.md)
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Setup Frontend](Frontend/README.md)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Setup Frontend](frontend/README.md)
 
 
 
