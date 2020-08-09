@@ -10,9 +10,9 @@ Say My Name uses:
 - Material UI
 
 ## Getting Started
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Setup React](https://reactjs.org/docs/create-a-new-react-app.html)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Setup Backend](Backend/README.md)
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Setup GraphQL](https://graphql.org/graphql-js/)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Setup Frontend](Frontend/README.md)
 
 
 
